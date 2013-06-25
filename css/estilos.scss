@@ -1,0 +1,42 @@
+.container{
+	font-family: Arial;
+	background: rgba(green,0.5);
+	color: white;
+	border: 3px solid transparent;
+	height: 100px;
+	width: 300px;
+	position:relative;
+
+	div{
+		text-align: center;
+		position: absolute;
+		background: rgba(red,0.8);
+	}
+	.left{
+		right: 0;
+		height: 100%;
+		width: 80%;
+	}
+
+	.right{
+		left: 0;
+		height: 100%;
+		width: 80%;
+	}
+
+	.top{
+		bottom: 0;
+		height: 80%;
+		width: 100%;
+	}
+
+	.bottom{
+		top: 0;
+		height: 80%;
+		width: 100%;
+	}
+
+	.off{
+		opacity: 0.4;
+	}
+}
