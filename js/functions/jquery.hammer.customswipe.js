@@ -57,6 +57,7 @@
 		var init = function(){
 			// On drag the element
 			options.container.hammer().on("drag",_this.selector,function(e){
+				_this = $(this);
 				var difX = x-e.gesture.deltaX;
 				var difY = x-e.gesture.deltaY;
 				// Depends of direction I move different
