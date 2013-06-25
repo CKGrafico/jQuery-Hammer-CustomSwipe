@@ -59,7 +59,6 @@
 			options.container.hammer().on("drag",_this.selector,function(e){
 				var difX = x-e.gesture.deltaX;
 				var difY = x-e.gesture.deltaY;
-				console.log(space);
 				// Depends of direction I move different
 				if(difX > 0 && difX < space && !end && options.direction == "left"){
 					move(1,difX);
