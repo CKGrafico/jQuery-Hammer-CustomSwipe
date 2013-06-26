@@ -1,1 +1,48 @@
-.container{font-family:Arial;background:rgba(0,128,0,0.5);color:white;border:3px solid transparent;height:100px;width:300px;position:relative}.container div{text-align:center;position:absolute;background:rgba(255,0,0,0.8)}.container .left{right:0;height:100%;width:80%}.container .right{left:0;height:100%;width:80%}.container .top{bottom:0;height:80%;width:100%}.container .bottom{top:0;height:80%;width:100%}.container .off{opacity:0.4}
+.container {
+  font-family: Arial;
+  background: rgba(0, 128, 0, 0.5);
+  color: white;
+  border: 3px solid transparent;
+  height: 100px;
+  width: 300px;
+  position: relative; }
+  .container div {
+    text-align: center;
+    position: absolute;
+    background: rgba(255, 0, 0, 0.8); }
+  .container .left {
+    right: 0;
+    height: 100%;
+    width: 80%; }
+  .container .right {
+    left: 0;
+    height: 100%;
+    width: 80%; }
+  .container .top {
+    bottom: 0;
+    height: 80%;
+    width: 100%; }
+  .container .bottom {
+    top: 0;
+    height: 80%;
+    width: 100%; }
+  .container .off {
+    opacity: 0.4; }
+
+.container-omni {
+  font-family: Arial;
+  background: rgba(0, 128, 0, 0.5);
+  color: white;
+  border: 3px solid transparent;
+  height: 400px;
+  width: 400px;
+  position: relative; }
+  .container-omni div {
+    text-align: center;
+    position: absolute;
+    background: rgba(255, 0, 0, 0.8); }
+  .container-omni #omni {
+    right: 25%;
+    top: 25%;
+    height: 50%;
+    width: 50%; }

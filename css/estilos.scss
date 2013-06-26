@@ -40,3 +40,25 @@
 		opacity: 0.4;
 	}
 }
+
+.container-omni{
+	font-family: Arial;
+	background: rgba(green,0.5);
+	color: white;
+	border: 3px solid transparent;
+	height: 400px;
+	width: 400px;
+	position:relative;
+
+	div{
+		text-align: center;
+		position: absolute;
+		background: rgba(red,0.8);
+	}
+	#omni{
+		right: 25%;
+		top: 25%;
+		height: 50%;
+		width: 50%;
+	}
+}

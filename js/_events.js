@@ -11,4 +11,8 @@ var $win = $(window);
 	$("#special:not(.off)").customSwipe({direction : "left"},function(){
 		$(this).addClass("off");
 	});
+
+	$("#omni").customSwipe({direction : "left"},function(){
+		$(this).addClass("off");
+	});
 })();
