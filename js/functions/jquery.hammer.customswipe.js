@@ -8,7 +8,6 @@
  * params.returntime = time necessary for return to initially position
  */
 (function($){
-	var x = 0;
 	var end = false;
 
 	$.fn.customSwipe = function(params,callback){
@@ -16,8 +15,7 @@
 
 		var options = {
 			container  : $(this).parent(),
-			threshold  : 0.5,
-			direction  : "left",
+			directions  : "left",
 			delay 	   : 100,
 			returntime : 50
 		};
@@ -28,82 +26,56 @@
 		// Extend default options with custom options
 		options = $.extend(options, params);
 
-		// Consider correct direction
-		var reverse_direction;
-		// Maximum space with container
-		var space;
+		// Save the position of the element
+		var $position = $(this).position();
 
-		// Switch direction I save reverse direction and the heigth or width
-		switch(options.direction){
-			case "right":
-				reverse_direction = "left";
-				space = parseInt(options.container.css("width"))-parseInt($(this).css("width"));
-				break;
-			case "left":
-				reverse_direction = "right";
-				space = parseInt(options.container.css("width"))-parseInt($(this).css("width"));
-				break;
-			case "top":
-				reverse_direction = "bottom";
-				space = parseInt(options.container.css("height"))-parseInt($(this).css("height"));
-				break;
-			case "bottom":
-				reverse_direction = "top";
-				space = parseInt(options.container.css("height"))-parseInt($(this).css("height"));
-				break;
-		}
-
-		// Initialize de plugin
-		var init = function(){
-			// On drag the element
-			options.container.hammer().on("drag",_this.selector,function(e){
-				_this = $(this);
-				var difX = x-e.gesture.deltaX;
-				var difY = x-e.gesture.deltaY;
-				// Depends of direction I move different
-				if(difX > 0 && difX < space && !end && options.direction == "left"){
-					move(1,difX);
-
-				}else if(difX < 0 && difX < space && !end && options.direction == "right"){
-					move(-1,difX);
-
-				}else if(difY > 0 && difY < space && !end && options.direction == "top"){
-					move(1,difY);
-
-				}else if(difY < 0 && difY < space && !end && options.direction == "bottom"){
-					move(-1,difY);
-				}
-
-			// When I finish
-			}).on("dragend",_this.selector,function(e){
-				var anim = {};
-				anim[reverse_direction] = 0;
-				_this.delay(options.delay).animate(anim,options.returntime);
-			});
-		}
-
-		// Move the element
-		var move = function(sign,dif){
-			// When pass the threshold I finish it
-			if ((dif > (space)*options.threshold && sign == 1) || (dif < -(space)*options.threshold && sign == -1)){
-				_this.css(reverse_direction,space+"px");
-				end = true;
-				var anim = {};
-				anim[reverse_direction] = 0;
-				_this.delay(options.delay).animate(anim,options.returntime,function(){
-					end = false;
+		// Posible directions
+		var directions = {
+			left : function(){
+				directions.move("dragleft","deltaX","left",0);
+			},
+			right : function(){
+				directions.move("dragright","deltaX","left",1);
+			},
+			up : function(){
+				directions.move("dragup","deltaY","top",0);
+			},
+			down : function(){
+				directions.move("dragdown","deltaY","top",1);
+			},
+			move : function(drag,delta,direction,the_case){
+				options.container.hammer().on(drag,_this.selector,function(e){
+					var dif = ($position[direction])+(e.gesture[delta]);
+					if(!end){
+						if (the_case == 0 && dif >= 0 || the_case == 1 && (dif <= parseInt(options.container.width()-_this.width()) && direction == "left" || dif <= parseInt(options.container.height()-_this.height()) && direction == "top") ) {
+							_this.css(direction,dif+"px");
+						}else{
+							end = true;
+							var anim = {};
+							anim[direction] = ($position[direction])+"px";
+							_this.delay(options.delay).animate(anim,options.returntime,function(){
+								doCallback();
+								end = false;
+							});
+						}
+					}
 				});
+			}
+		}
 
-				// Do the calback if necessary
-				if(callback){
-					callback.call(_this);
-				}else if(typeof params == "function"){
-					params.call(_this);
-				}
+		var init = function(){
+			var dirs = options.directions.split(",");
+			for (var i in dirs){
+				directions[dirs[i]]();
+			}
+		}
 
-			}else{
-				// Move normally
-				_this.css(reverse_direction,sign*dif+"px");
+		var doCallback = function(){
+			// Do the calback if necessary
+			if(callback){
+				callback.call(_this);
+			}else if(typeof params == "function"){
+				params.call(_this);
 			}
 		}
 		// returns each of the elements we have passed to the plugin

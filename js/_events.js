@@ -4,15 +4,13 @@ var $win = $(window);
 
 (function(){
 	$("#left").customSwipe();
-	$("#right").customSwipe({direction : "right"});
-	$("#top").customSwipe({direction : "top"});
-	$("#bottom").customSwipe({direction : "bottom"});
+	$("#right").customSwipe({directions : "right"});
+	$("#top").customSwipe({directions : "up"});
+	$("#bottom").customSwipe({directions : "down"});
 
-	$("#special:not(.off)").customSwipe({direction : "left"},function(){
+	$("#special:not(.off)").customSwipe(function(){
 		$(this).addClass("off");
 	});
 
-	$("#omni").customSwipe({direction : "left"},function(){
-		$(this).addClass("off");
-	});
+	$("#omni").customSwipe({directions : "left,up,right,down"});
 })();
