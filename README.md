@@ -3,8 +3,7 @@ jQuery plugin that implements custom Swipe event (it depends of HammerJS http://
 
 ## Options
 * container: The container of element (by default: parent)
-* threshold: number between 0 to 1 that represents the final accuracy (by default: 0.5).
-* direction: Direction for the swipe (by default: 'left').
+* directions: Direction for the swipe separated by commas left,up,down,right (by default: 'left').
 * delay: delay time after ends event in 'ms' (by default: 100).
 * returntime:  time necessary for return to initially position in 'ms' (by default: 50).
 
@@ -14,15 +13,17 @@ jQuery plugin that implements custom Swipe event (it depends of HammerJS http://
 ```javascript
 (function(){
 	$("#left").customSwipe();
-	$("#right").customSwipe({direction : "right"});
-	$("#top").customSwipe({direction : "top"});
-	$("#bottom").customSwipe({direction : "bottom"});
+	$("#right").customSwipe({directions : "right"});
+	$("#top").customSwipe({directions : "up"});
+	$("#bottom").customSwipe({directions : "down"});
+
+	$("#omni").customSwipe({directions : "left,up,right,down"});
 })();
 ```
 ### With callback
 ```javascript
 (function(){
-	$("#special:not(.off)").customSwipe({direction : "left"},function(){
+	$("#special:not(.off)").customSwipe(function(){
 		$(this).addClass("off");
 	});
 })();

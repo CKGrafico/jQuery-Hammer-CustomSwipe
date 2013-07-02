@@ -3,7 +3,7 @@
  * @param {Object}   params   [All options of the plugin]
  * params.container = The container of element
  * params.threshold = number between 0 to 1 that represents the final accuracy
- * params.direction = Direction for the swipe
+ * params.directions = Directions for the swipe separated by commas left,up,down,right
  * params.delay = delay time after ends event
  * params.returntime = time necessary for return to initially position
  */
