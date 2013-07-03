@@ -1,5 +1,6 @@
 # customSwipe
 jQuery plugin that implements custom Swipe event (it depends of HammerJS http://eightmedia.github.io/hammer.js/)
+See examples http://ckgrafico.github.io/jQuery-Hammer-CustomSwipe/index.html
 
 ## Options
 * container: The container of element (by default: parent)

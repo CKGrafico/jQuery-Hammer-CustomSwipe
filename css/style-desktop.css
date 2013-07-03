@@ -495,6 +495,11 @@
 			padding-bottom: 5em;
 		}
 
+		#features .style1
+		{
+			font-size: 1.3em;
+		}
+
 		#features .actions
 		{
 			margin-top: 5em;
