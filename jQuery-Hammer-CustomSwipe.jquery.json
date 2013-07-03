@@ -1,0 +1,32 @@
+{
+	"name": "jQuery-Hammer-CustomSwipe",
+	"title": "jQuery Hammer.js CustomSwipe",
+	"description": "jQuery plugin that implements custom Swipe event (it depends of HammerJS http://eightmedia.github.io/hammer.js/)",
+	"keywords": [
+		"Hammer",
+		"HammerJS",
+		"swipe",
+		"jQuery",
+		"jqueryevents",
+		"event"
+	],
+	"version": "1.1.0",
+	"author": {
+		"name": "Quique Fdez Guerra",
+		"url" : "https://twitter.com/CKGrafico"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "https://github.com/CKGrafico/jQuery_HandlebarsJS/blob/master/MIT-LICENSE.txt"
+		}
+	],
+	"bugs": "https://github.com/CKGrafico/jQuery-Hammer-CustomSwipe/issues",
+	"homepage": "https://github.com/CKGrafico/jQuery-Hammer-CustomSwipe/",
+	"docs": "https://github.com/CKGrafico/jQuery-Hammer-CustomSwipe/",
+	"demo" : "http://ckgrafico.github.io/jQuery-Hammer-CustomSwipe",
+	"download": "https://github.com/CKGrafico/jQuery-Hammer-CustomSwipe/archive/master.zip",
+	"dependencies": {
+		"jquery": ">=1.8"
+	}
+}

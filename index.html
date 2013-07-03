@@ -1,131 +1,54 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>jQuery-Hammer-CustomSwipe by CKGrafico</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <link href="stylesheets/estilos.css" rel="stylesheet" type="text/css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  </head>
-  <body>
+	<title>Título</title>
 
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/CKGrafico/jQuery-Hammer-CustomSwipe">Fork On GitHub</a></li>
-          <li class="fork">&nbsp;  &nbsp;<a href="#examples">Examples</a></li>
-          <li class="downloads"><a href="https://github.com/CKGrafico/jQuery-Hammer-CustomSwipe/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/CKGrafico/jQuery-Hammer-CustomSwipe/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+	<meta name="description" content="Descripcion web"/>
+    <meta name="keywords" content="a,b"/>
 
-    <div class="wrapper">
+    <link href="css/estilos.css" rel="stylesheet" type="text/css" />
+	<link rel="shortcut icon" href="favicon.ico">
 
-      <section>
-        <div id="title">
-          <h1>jQuery-Hammer-CustomSwipe</h1>
-          <p>Custom Swipe with jQuery and HammerJS</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/CKGrafico">CKGrafico</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+	<!-- jQuery -->
+	<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+	<script type="text/javascript">if(!window.jQuery){document.write('<script src="js/libraries/jquery-2.0.0.min.js"><\/script>')}</script>
 
-        <h1>
-<a name="customswipe" class="anchor" href="#customswipe"><span class="octicon octicon-link"></span></a>customSwipe</h1>
+</head>
+<body>
 
-<p>jQuery plugin that implements custom Swipe event (it depends of HammerJS <a href="http://eightmedia.github.io/hammer.js/">http://eightmedia.github.io/hammer.js/</a>)</p>
+	<div class="container">
+		<div id="left" class="left"><br><br>To left</div>
+	</div>
+	<br>
+	<div class="container">
+		<div id="right" class="right"><br><br>To Right</div>
+	</div>
+	<br>
+	<div class="container">
+		<div id="top" class="top"><br><br>To Top</div>
+	</div>
+	<br>
+	<div class="container">
+		<div id="bottom" class="bottom"><br><br>To Bottom</div>
+	</div>
+	<br>
+	<div class="container">
+		<div id="special" class="left"><br><br>With callback</div>
+	</div>
+	<br>
+	<div class="container-omni">
+		<div id="omni"><br><br>Omnidirectional</div>
+	</div>
 
-<h2>
-<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h2>
 
-<ul>
-<li>container: The container of element (by default: parent)</li>
-<li>directions: Direction for the swipe separated by commas left,up,down,right (by default: 'left').</li>
-<li>delay: delay time after ends event in 'ms' (by default: 100).</li>
-<li>returntime:  time necessary for return to initially position in 'ms' (by default: 50).</li>
-</ul><h2>
-<a name="use" class="anchor" href="#use"><span class="octicon octicon-link"></span></a>Use</h2>
 
-<h3>
-<a name="default-use" class="anchor" href="#default-use"><span class="octicon octicon-link"></span></a>Default use</h3>
 
-<div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s2">"#left"</span><span class="p">).</span><span class="nx">customSwipe</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s2">"#right"</span><span class="p">).</span><span class="nx">customSwipe</span><span class="p">({</span><span class="nx">directions</span> <span class="o">:</span> <span class="s2">"right"</span><span class="p">});</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s2">"#top"</span><span class="p">).</span><span class="nx">customSwipe</span><span class="p">({</span><span class="nx">directions</span> <span class="o">:</span> <span class="s2">"up"</span><span class="p">});</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s2">"#bottom"</span><span class="p">).</span><span class="nx">customSwipe</span><span class="p">({</span><span class="nx">directions</span> <span class="o">:</span> <span class="s2">"down"</span><span class="p">});</span>
+	<script src="js/libraries/jquery.hammer.min.js"></script>
+	<script src="js/functions/jquery.hammer.customswipe.js"></script>
+	<script src="js/events.js"></script>
 
-    <span class="nx">$</span><span class="p">(</span><span class="s2">"#omni"</span><span class="p">).</span><span class="nx">customSwipe</span><span class="p">({</span><span class="nx">directions</span> <span class="o">:</span> <span class="s2">"left,up,right,down"</span><span class="p">});</span>
-<span class="p">})();</span>
-</pre></div>
-
-<h3>
-<a name="with-callback" class="anchor" href="#with-callback"><span class="octicon octicon-link"></span></a>With callback</h3>
-
-<div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s2">"#special:not(.off)"</span><span class="p">).</span><span class="nx">customSwipe</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">"off"</span><span class="p">);</span>
-    <span class="p">});</span>
-<span class="p">})();</span>
-</pre></div>
-
-<h2>
-<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
-<h3>To Left</h3>
-<div class="container">
-    <div id="left" class="left"><br><br></div>
-  </div>
-
-  <br>
-  <h3>To Right</h3>
-  <div class="container">
-    <div id="right" class="right"><br><br></div>
-  </div>
-
-  <br>
-  <h3>Up</h3>
-  <div class="container">
-    <div id="top" class="top"><br><br></div>
-  </div>
-
-  <br>
-  <h3>Down</h3>
-  <div class="container">
-    <div id="bottom" class="bottom"><br><br></div>
-  </div>
-
-  <br>
-  <h3>With Callback</h3>
-  <div class="container">
-    <div id="special" class="left"><br><br></div>
-  </div>
-
-  <br>
-  <h3>left,right,up,down</h3>
-  <div class="container-omni">
-    <div id="omni"><br><br></div>
-  </div>
-<h2>
-<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h2>
-
-<p>Plugin by @ CKGRafico
-Website: <a href="http://www.ckgrafico.com">http://www.ckgrafico.com</a></p>
-      </section>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-    <script src="js/libraries/jquery.hammer.min.js"></script>
-  <script src="js/functions/jquery.hammer.customswipe.js"></script>
-  <script src="js/events.js"></script>
-  </body>
+</body>
 </html>

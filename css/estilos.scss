@@ -1,6 +1,6 @@
 .container{
 	font-family: Arial;
-	background: #118c33;
+	background: rgba(green,0.5);
 	color: white;
 	border: 3px solid transparent;
 	height: 100px;
@@ -10,7 +10,7 @@
 	div{
 		text-align: center;
 		position: absolute;
-		background: #e4d133;
+		background: rgba(red,0.8);
 	}
 	.left{
 		right: 0;

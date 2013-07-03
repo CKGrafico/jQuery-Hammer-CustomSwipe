@@ -1,13 +1,34 @@
-# Midnight
+# customSwipe
+jQuery plugin that implements custom Swipe event (it depends of HammerJS http://eightmedia.github.io/hammer.js/)
 
-Open source content for Midnight theme. Theme was first designed / developed for GitHub Pages and is availalbe for download, forking and using anywhere else on the web. Like the theme share it with the twitterverse.
+## Options
+* container: The container of element (by default: parent)
+* directions: Direction for the swipe separated by commas left,up,down,right (by default: 'left').
+* delay: delay time after ends event in 'ms' (by default: 100).
+* returntime:  time necessary for return to initially position in 'ms' (by default: 50).
 
-![Midnight Theme](http://f.cl.ly/items/2G0Q031t2K3h0F2i3V1E/Screen%20Shot%202012-12-25%20at%208.38.55%20AM.png)
+## Use
 
-The Midnight Pages demo is [here](http://mattgraham.github.com/Midnight)
+### Default use
+```javascript
+(function(){
+	$("#left").customSwipe();
+	$("#right").customSwipe({directions : "right"});
+	$("#top").customSwipe({directions : "up"});
+	$("#bottom").customSwipe({directions : "down"});
 
-*Note Additional font characters for OpenSans typeface can be found in [v1.1](https://github.com/mattgraham/Midnight/archive/v1.1.zip)
+	$("#omni").customSwipe({directions : "left,up,right,down"});
+})();
+```
+### With callback
+```javascript
+(function(){
+	$("#special:not(.off)").customSwipe(function(){
+		$(this).addClass("off");
+	});
+})();
+```
 
-Theme by [Matt Graham](http://madebygraham.com), twitter [@michigangraham](http://twitter.com/#!/michigangraham)
-
-[Creative Commons Attribution](http://creativecommons.org/licenses/by/3.0/)
+## About
+Plugin by @ CKGRafico
+Website: http://www.ckgrafico.com
