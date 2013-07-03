@@ -12,5 +12,7 @@ var $win = $(window);
 		$(this).addClass("off");
 	});
 
-	$("#omni").customSwipe({directions : "left,up,right,down"});
+	$("#omni1").customSwipe({directions : "left,up"});
+	$("#omni2").customSwipe({directions : "left,right"});
+	$("#omni3").customSwipe({directions : "left,up,right,down"});
 })();

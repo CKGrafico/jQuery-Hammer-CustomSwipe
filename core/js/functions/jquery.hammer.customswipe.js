@@ -17,7 +17,7 @@
 			container  : $(this).parent(),
 			directions  : "left",
 			delay 	   : 100,
-			returntime : 50
+			returntime : 200
 		};
 
 		// Save this jquery object
@@ -44,20 +44,34 @@
 				directions.move("dragdown","deltaY","top",1);
 			},
 			move : function(drag,delta,direction,the_case){
+				var arrives;
 				options.container.hammer().on(drag,_this.selector,function(e){
 					var dif = ($position[direction])+(e.gesture[delta]);
+					arrives = false;
 					if(!end){
 						if (the_case == 0 && dif >= 0 || the_case == 1 && (dif <= parseInt(options.container.width()-_this.width()) && direction == "left" || dif <= parseInt(options.container.height()-_this.height()) && direction == "top") ) {
 							_this.css(direction,dif+"px");
+							arrives = false;
 						}else{
-							end = true;
-							var anim = {};
-							anim[direction] = ($position[direction])+"px";
-							_this.delay(options.delay).animate(anim,options.returntime,function(){
-								doCallback();
-								end = false;
-							});
+							arrives = true;
+
 						}
+					}
+				}).on("dragend",function(){
+					var anim = {};
+					anim[direction] = ($position[direction])+"px";
+
+					if(arrives){
+						end = true;
+						_this.delay(options.delay).animate(anim,options.returntime,function(){
+							doCallback();
+							end = false;
+						});
+					}else{
+						end = true;
+						_this.delay(options.delay).animate(anim,Math.round(options.returntime/4),function(){
+							end = false;
+						});
 					}
 				});
 			}
