@@ -1,0 +1,23 @@
+@mixin Font($name,$path,$name){
+	font-family: $name;
+    src: url($path+$name+'.eot');
+    src: url($path+$name+'.eot') format('embedded-opentype'),
+         url($path+$name+'.woff') format('woff'),
+         url($path+$name+'.ttf') format('truetype'),
+         url($path+$name+'.svg#'+$name) format('svg');
+}
+
+
+@mixin PropPrefix($property,$value) {
+  	@each $prefix in $prefixes {
+        -#{$prefix}-#{$property}: #{$value};
+    }
+    #{$property}: #{$value};
+}
+
+@mixin ValuePrefix($property,$value) {
+  	@each $prefix in $prefixes {
+        	#{$property}: -#{$prefix}-#{$value};
+    }
+    #{$property} : #{$value};
+}
