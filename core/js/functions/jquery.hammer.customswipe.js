@@ -46,6 +46,7 @@
 			move : function(drag,delta,direction,the_case){
 				var arrives;
 				options.container.hammer().on(drag,_this.selector,function(e){
+					_this = $(this);
 					var dif = ($position[direction])+(e.gesture[delta]);
 					arrives = false;
 					if(!end){
