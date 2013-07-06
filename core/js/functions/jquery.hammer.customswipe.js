@@ -61,21 +61,19 @@
                             _this.css(direction, dif + "px");
                             arrives = false;
                         } else {
-                            arrives = true;
-
+                            end = true;
                         }
                     }
                 }).on("dragend", function () {
                     var anim = {};
                     anim[direction] = ($position[direction]) + "px";
 
-                    if (arrives) {
-                        end = true;
+                    if (end) {
                         _this.delay(options.delay).animate(anim, options.returntime, function () {
                             doCallback();
+                            end = false;
                         });
                     } else {
-                        end = true;
                         _this.delay(options.delay).animate(anim, Math.round(options.returntime / 4), function () {
                             end = false;
                         });
@@ -92,16 +90,16 @@
         }
 
         var doCallback = function () {
-            // Do the calback if necessary
-            if (typeof options.directions[current] == "function") options.directions[current].call(_this);
+            if (end) {
+                // Do the calback if necessary
+                if (typeof options.directions[current] == "function") options.directions[current].call(_this);
 
-            if (callback) {
-                callback.call(_this);
-            } else if (typeof params == "function") {
-                params.call(_this);
+                if (callback) {
+                    callback.call(_this);
+                } else if (typeof params == "function") {
+                    params.call(_this);
+                }
             }
-
-            end = false;
         }
         init();
     };
