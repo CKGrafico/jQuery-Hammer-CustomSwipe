@@ -4,15 +4,52 @@ var $win = $(window);
 
 (function(){
 	$("#left").customSwipe();
-	$("#right").customSwipe({directions : "right"});
-	$("#top").customSwipe({directions : "up"});
-	$("#bottom").customSwipe({directions : "down"});
-
-	$("#special:not(.off)").customSwipe(function(){
-		$(this).addClass("off");
+	$("#right").customSwipe({
+		directions : {
+			right : true
+		}
+	});
+	$("#top").customSwipe({
+		directions : {
+			up : true
+		}
+	});
+	$("#bottom").customSwipe({
+		directions : {
+			down : true
+		}
 	});
 
-	$("#omni1").customSwipe({directions : "left,up"});
-	$("#omni2").customSwipe({directions : "left,right"});
-	$("#omni3").customSwipe({directions : "left,up,right,down"});
+	$("#special:not(.off)").customSwipe({
+		directions : {
+			left : function(){
+				alert ("Direction callback");
+				$(this).addClass("off");
+			}
+		}
+	},
+	function(){
+		alert ("General callback");
+	});
+
+	$("#omni1").customSwipe({
+		directions : {
+			left : true,
+			up : true
+		}
+	});
+	$("#omni2").customSwipe({
+		directions : {
+			left : true,
+			right : true
+		}
+	});
+	$("#omni3").customSwipe({
+		directions : {
+			left : true,
+			down : true,
+			right : true,
+			up : true
+		}
+	});
 })();

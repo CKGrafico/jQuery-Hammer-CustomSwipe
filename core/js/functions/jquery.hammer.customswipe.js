@@ -15,7 +15,12 @@
 
 		var options = {
 			container  : $(this).parent(),
-			directions  : "left",
+			directions  : {
+				left : true,
+				right : false,
+				up : false,
+				down : false
+			},
 			delay 	   : 100,
 			returntime : 200
 		};
@@ -79,15 +84,19 @@
 		}
 
 		var init = function(){
-			var dirs = options.directions.split(",");
+			var dirs = options.directions;
 			for (var i in dirs){
-				directions[dirs[i]]();
+				if (dirs[i]) directions[i]();
 			}
 		}
 
 		var doCallback = function(){
 			// Do the calback if necessary
 			if(callback){
+				var dirs = options.directions;
+				for (var i in dirs){
+					if (typeof dirs[i] == "function") dirs[i].call(_this);
+				}
 				callback.call(_this);
 			}else if(typeof params == "function"){
 				params.call(_this);

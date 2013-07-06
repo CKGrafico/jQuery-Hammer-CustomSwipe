@@ -14,18 +14,57 @@ See examples http://ckgrafico.github.io/jQuery-Hammer-CustomSwipe/index.html
 ```javascript
 (function(){
 	$("#left").customSwipe();
-	$("#right").customSwipe({directions : "right"});
-	$("#top").customSwipe({directions : "up"});
-	$("#bottom").customSwipe({directions : "down"});
+	$("#right").customSwipe({
+		directions : {
+			right : true
+		}
+	});
+	$("#top").customSwipe({
+		directions : {
+			up : true
+		}
+	});
+	$("#bottom").customSwipe({
+		directions : {
+			down : true
+		}
+	});
 
-	$("#omni").customSwipe({directions : "left,up,right,down"});
+	$("#omni1").customSwipe({
+		directions : {
+			left : true,
+			up : true
+		}
+	});
+	$("#omni2").customSwipe({
+		directions : {
+			left : true,
+			right : true
+		}
+	});
+	$("#omni3").customSwipe({
+		directions : {
+			left : true,
+			down : true,
+			right : true,
+			up : true
+		}
+	});
 })();
 ```
 ### With callback
 ```javascript
 (function(){
-	$("#special:not(.off)").customSwipe(function(){
-		$(this).addClass("off");
+	$("#special:not(.off)").customSwipe({
+		directions : {
+			left : function(){
+				alert ("Direction callback");
+				$(this).addClass("off");
+			}
+		}
+	},
+	function(){
+		alert ("General callback");
 	});
 })();
 ```
