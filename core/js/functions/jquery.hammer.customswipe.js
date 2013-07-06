@@ -93,10 +93,6 @@
 				params.call(_this);
 			}
 		}
-		// returns each of the elements we have passed to the plugin
-		// it allows you to chain multiple functions and plugins together on one jQuery element.
-		return this.each(function(){
-			init();
-		});
+		init();
 	};
 }(jQuery));
