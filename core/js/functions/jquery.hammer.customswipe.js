@@ -7,101 +7,102 @@
  * params.delay = delay time after ends event
  * params.returntime = time necessary for return to initially position
  */
-(function($){
-	var end = false;
+(function ($) {
+    var end = false;
+    var current = null;
 
-	$.fn.customSwipe = function(params,callback){
-		// Default options
+    $.fn.customSwipe = function (params, callback) {
+        // Default options
 
-		var options = {
-			container  : $(this).parent(),
-			directions  : {
-				left : true,
-				right : false,
-				up : false,
-				down : false
-			},
-			delay 	   : 100,
-			returntime : 200
-		};
+        var options = {
+            container: $(this).parent(),
+            directions: {
+                left: true,
+                right: false,
+                up: false,
+                down: false
+            },
+            delay: 100,
+            returntime: 200
+        };
 
-		// Save this jquery object
-		var _this = $(this);
+        // Save this jquery object
+        var _this = $(this);
 
-		// Extend default options with custom options
-		options = $.extend(options, params);
+        // Extend default options with custom options
+        options = $.extend(options, params);
 
-		// Save the position of the element
-		var $position = $(this).position();
+        // Save the position of the element
+        var $position = $(this).position();
 
-		// Posible directions
-		var directions = {
-			left : function(){
-				directions.move("dragleft","deltaX","left",0);
-			},
-			right : function(){
-				directions.move("dragright","deltaX","left",1);
-			},
-			up : function(){
-				directions.move("dragup","deltaY","top",0);
-			},
-			down : function(){
-				directions.move("dragdown","deltaY","top",1);
-			},
-			move : function(drag,delta,direction,the_case){
-				var arrives;
-				options.container.hammer().on(drag,_this.selector,function(e){
-					_this = $(this);
-					var dif = ($position[direction])+(e.gesture[delta]);
-					arrives = false;
-					if(!end){
-						if (the_case == 0 && dif >= 0 || the_case == 1 && (dif <= parseInt(options.container.width()-_this.width()) && direction == "left" || dif <= parseInt(options.container.height()-_this.height()) && direction == "top") ) {
-							_this.css(direction,dif+"px");
-							arrives = false;
-						}else{
-							arrives = true;
+        // Posible directions
+        var directions = {
+            left: function () {
+                directions.move("dragleft", "deltaX", "left", 0, "left");
+            },
+            right: function () {
+                directions.move("dragright", "deltaX", "left", 1, "right");
+            },
+            up: function () {
+                directions.move("dragup", "deltaY", "top", 0, "up");
+            },
+            down: function () {
+                directions.move("dragdown", "deltaY", "top", 1, "down");
+            },
+            move: function (drag, delta, direction, the_case, curre) {
+                var arrives;
+                options.container.hammer().on(drag, _this.selector, function (e) {
+                    current = curre;
+                    _this = $(this);
+                    var dif = ($position[direction]) + (e.gesture[delta]);
+                    arrives = false;
+                    if (!end) {
+                        if (the_case == 0 && dif >= 0 || the_case == 1 && (dif <= parseInt(options.container.width() - _this.width()) && direction == "left" || dif <= parseInt(options.container.height() - _this.height()) && direction == "top")) {
+                            _this.css(direction, dif + "px");
+                            arrives = false;
+                        } else {
+                            arrives = true;
 
-						}
-					}
-				}).on("dragend",function(){
-					var anim = {};
-					anim[direction] = ($position[direction])+"px";
+                        }
+                    }
+                }).on("dragend", function () {
+                    var anim = {};
+                    anim[direction] = ($position[direction]) + "px";
 
-					if(arrives){
-						end = true;
-						_this.delay(options.delay).animate(anim,options.returntime,function(){
-							doCallback();
-							end = false;
-						});
-					}else{
-						end = true;
-						_this.delay(options.delay).animate(anim,Math.round(options.returntime/4),function(){
-							end = false;
-						});
-					}
-				});
-			}
-		}
+                    if (arrives) {
+                        end = true;
+                        _this.delay(options.delay).animate(anim, options.returntime, function () {
+                            doCallback();
+                        });
+                    } else {
+                        end = true;
+                        _this.delay(options.delay).animate(anim, Math.round(options.returntime / 4), function () {
+                            end = false;
+                        });
+                    }
+                });
+            }
+        }
 
-		var init = function(){
-			var dirs = options.directions;
-			for (var i in dirs){
-				if (dirs[i]) directions[i]();
-			}
-		}
+        var init = function () {
+            var dirs = options.directions;
+            for (var i in dirs) {
+                if (dirs[i]) directions[i]();
+            }
+        }
 
-		var doCallback = function(){
-			// Do the calback if necessary
-			if(callback){
-				var dirs = options.directions;
-				for (var i in dirs){
-					if (typeof dirs[i] == "function") dirs[i].call(_this);
-				}
-				callback.call(_this);
-			}else if(typeof params == "function"){
-				params.call(_this);
-			}
-		}
-		init();
-	};
+        var doCallback = function () {
+            // Do the calback if necessary
+            if (typeof options.directions[current] == "function") options.directions[current].call(_this);
+
+            if (callback) {
+                callback.call(_this);
+            } else if (typeof params == "function") {
+                params.call(_this);
+            }
+
+            end = false;
+        }
+        init();
+    };
 }(jQuery));
