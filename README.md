@@ -50,6 +50,12 @@ See examples http://ckgrafico.github.io/jQuery-Hammer-CustomSwipe/index.html
 			up : true
 		}
 	});
+
+	$("#gradient-left").customSwipe({
+		directions : {
+			gradient : true
+		}
+	});
 })();
 ```
 ### With callback

@@ -52,4 +52,10 @@ var $win = $(window);
 			up : true
 		}
 	});
+
+	$("#gradient-left").customSwipe({
+		directions : {
+			gradient : true
+		}
+	});
 })();

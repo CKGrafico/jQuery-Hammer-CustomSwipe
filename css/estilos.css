@@ -28,6 +28,9 @@
     width: 100%; }
   .container .off {
     opacity: 0.4; }
+  .container .gradient {
+    height: 100%;
+    width: 100%; }
 
 .container-omni {
   font-family: Arial;

@@ -20,7 +20,8 @@
                 left: true,
                 right: false,
                 up: false,
-                down: false
+                down: false,
+                gradient: false
             },
             delay: 100,
             returntime: 200
@@ -48,6 +49,55 @@
             },
             down: function () {
                 directions.move("dragdown", "deltaY", "top", 1, "down");
+            },
+            gradient: function(){
+                var arrives;
+                var dif;
+                options.container.hammer().on("dragleft", function (e) {
+                    current = "left";
+                    dif = 100 + ((($position["left"]) + (e.gesture["deltaX"]))/2);
+                    arrives = false;
+                    if (!end) {
+                        if ( dif > 10) {
+                            _this.css("-webkit-mask-image", "-webkit-linear-gradient(left top ,rgba(0,0,0,1) 0%, rgba(0,0,0,"+dif/120+") "+dif*1.5+"%)");
+                            arrives = false;
+                        } else {
+                            end = true;
+                        }
+                    }
+                }).on("dragend", function () {
+                    if (end) {
+                        function animation(dif){
+                            _this.css("-webkit-mask-image", "-webkit-linear-gradient(left top ,rgba(0,0,0,1) 0%, rgba(0,0,0,"+dif/120+") "+dif*1.5+"%)");
+                            if (dif > 0){
+                                dif -= 10;
+                                setTimeout(function(){
+                                    animation(dif);
+                                },50);
+                            }else{
+                                doCallback();
+                            }
+                        }
+
+                        animation(10);
+                    }else{
+                        _this.css("-webkit-mask-image","-webkit-linear-gradient(left top ,rgba(0,0,0,1) 0%, rgba(0,0,0,1) 100%)");
+                    }
+
+                    end = false;
+                }).on("swiperight", function () {
+                    function animation(dif){
+                        _this.css("-webkit-mask-image", "-webkit-linear-gradient(left top ,rgba(0,0,0,1) 0%, rgba(0,0,0,"+dif/120+") "+dif*1.5+"%)");
+                        if (dif < 100){
+                            dif += 10;
+                            setTimeout(function(){
+                                animation(dif);
+                            },50);
+                        }
+                    }
+
+                    animation(0);
+                });
             },
             move: function (drag, delta, direction, the_case, curre) {
                 var arrives;
