@@ -53,13 +53,18 @@
             gradient: function(){
                 var arrives;
                 var dif;
+                var stlye = function(e,dif){
+                    e.css("mask-image", "-webkit-linear-gradient(left top ,rgba(0,0,0,1) 0%, rgba(0,0,0,"+dif/120+") "+dif*1.5+"%)");
+                    e.css("mask-image", "-ms-linear-gradient(left top ,rgba(0,0,0,1) 0%, rgba(0,0,0,"+dif/120+") "+dif*1.5+"%)");
+                    e.css("mask-image", "-moz-linear-gradient(left top ,rgba(0,0,0,1) 0%, rgba(0,0,0,"+dif/120+") "+dif*1.5+"%)");
+                }
                 options.container.hammer().on("dragleft", function (e) {
                     current = "left";
                     dif = 100 + ((($position["left"]) + (e.gesture["deltaX"]))/2);
                     arrives = false;
                     if (!end) {
-                        if ( dif > 10) {
-                            _this.css("-webkit-mask-image", "-webkit-linear-gradient(left top ,rgba(0,0,0,1) 0%, rgba(0,0,0,"+dif/120+") "+dif*1.5+"%)");
+                        if ( dif > 11) {
+                            stlye(_this,dif);
                             arrives = false;
                         } else {
                             end = true;
@@ -67,27 +72,41 @@
                     }
                 }).on("dragend", function () {
                     if (end) {
-                        function animation(dif){
-                            _this.css("-webkit-mask-image", "-webkit-linear-gradient(left top ,rgba(0,0,0,1) 0%, rgba(0,0,0,"+dif/120+") "+dif*1.5+"%)");
+                        function animationdown(dif){
+                            stlye(_this,dif);
+                            arrives = false;
                             if (dif > 0){
-                                dif -= 10;
+                                dif -= 5;
+                                console.log(dif)
                                 setTimeout(function(){
-                                    animation(dif);
-                                },50);
+                                    animationdown(dif);
+                                },20);
                             }else{
                                 doCallback();
                             }
                         }
 
-                        animation(10);
+                        animationdown(10);
                     }else{
-                        _this.css("-webkit-mask-image","-webkit-linear-gradient(left top ,rgba(0,0,0,1) 0%, rgba(0,0,0,1) 100%)");
-                    }
+                       function animation(dif){
+                            stlye(_this,dif);
 
-                    end = false;
+                            if (dif < 100){
+                                dif += 15;
+                                setTimeout(function(){
+                                    animation(dif);
+                                },45);
+                            }else{
+                                end = false;
+                            }
+                        }
+
+                        animation(dif);
+                    }
                 }).on("swiperight", function () {
                     function animation(dif){
-                        _this.css("-webkit-mask-image", "-webkit-linear-gradient(left top ,rgba(0,0,0,1) 0%, rgba(0,0,0,"+dif/120+") "+dif*1.5+"%)");
+                        stlye(_this,dif);
+
                         if (dif < 100){
                             dif += 10;
                             setTimeout(function(){
